@@ -53,7 +53,7 @@ class Veiculo(models.Model):
         ('Indisponível', 'Indisponível'),
     ]
 
-    prefixo = models.CharField(max_length=6, unique=True)
+    prefixo = models.CharField(max_length=6, unique=True, blank=True, null=True)
     placa = models.CharField(max_length=10, unique=True)
     modelo = models.ForeignKey(ModeloVeiculo, on_delete=models.PROTECT, related_name='veiculos')
     tipo_veiculo = models.CharField(max_length=20, choices=TIPO_VEICULO_CHOICES, default='LEVE')
@@ -63,6 +63,7 @@ class Veiculo(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Disponível')
 
     def __str__(self):
+        identificacao = self.prefixo if self.prefixo else "S/ Prefixo"
         return f"{self.modelo} - {self.placa}"
 
 class Manutencao(models.Model):
