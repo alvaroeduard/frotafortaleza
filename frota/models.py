@@ -80,7 +80,7 @@ class Manutencao(models.Model):
     cidade_oficina = models.CharField(max_length=100, blank=True, verbose_name="Cidade da Oficina")
     data_entrada = models.DateField(default=timezone.now)
     data_previsao_saida = models.DateField(null=True, blank=True)
-    numero_os = models.CharField(max_length=50, verbose_name="Número da OS/Ticket")
+    numero_os = models.CharField(max_length=50, verbose_name="Número da OS/Ticket",null=True, blank=True)
     status_os = models.CharField(max_length=50, choices=STATUS_OS_CHOICES, verbose_name="Status da OS")
 
     def __str__(self):
